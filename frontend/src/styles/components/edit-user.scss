@@ -1,0 +1,28 @@
+.edit-user {
+    padding: 30px 10px;
+    height: 100%;
+
+    form {
+        width: 70%;
+        flex-grow: 1;
+        align-items: center;
+        div {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+        input {
+            padding: 0 5px;
+            flex-grow: 1;
+            font-size: 1.2rem;
+            border: 2.5px solid black;
+            border-radius: 5px;
+        }
+        
+        label {
+            font-weight: bold;
+        }
+        button {
+            align-self: flex-end;
+        }
+    }
+}

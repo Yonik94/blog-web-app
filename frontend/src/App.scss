@@ -1,0 +1,41 @@
+@import './styles/helpers.scss';
+@import './styles/components/user-preview.scss';
+@import './styles/components/user-list.scss';
+@import './styles/components/post-table-preview.scss';
+@import './styles/components/post-table-list.scss';
+@import './styles/components/main-header.scss';
+@import './styles/components/side-nav.scss';
+@import './styles/components/edit-post.scss';
+@import './styles/components/edit-user.scss';
+@import './styles/components/post-card-list.scss';
+@import './styles/components/post-card-preview.scss';
+@import './styles/components/single-post.scss';
+
+.App {
+  min-height: 100vh;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

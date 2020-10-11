@@ -1,0 +1,22 @@
+.post-table-list {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+
+    h2 {
+        text-align: center;
+        margin-block-end: 20px;
+    }
+
+    table,
+    th {
+        padding: 5px;
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+    table {
+        margin-block-end: 20px;
+    }
+}

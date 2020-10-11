@@ -1,0 +1,26 @@
+.side-nav {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    background-color:#E9B872;
+    position: relative;
+    a {
+        display: block;
+        padding: 10px 50px;
+        &:nth-of-type(odd) {
+         background-color: rgb(231, 193, 139);
+        }
+    }
+    button {
+        position: absolute;
+        right: 0;
+        bottom: 10px;
+    }
+    &.close {
+        left: -120px;
+    }
+    .marked {
+        background-color: #75b3cf !important;
+        border: 1px solid black;
+    }
+}
