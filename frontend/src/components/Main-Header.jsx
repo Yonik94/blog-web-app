@@ -5,9 +5,6 @@ import { Link } from 'react-router-dom';
 export const MainHeader = (props) => {
     const loggedInUser = useSelector(state => state.userReducer.loggedInUser)
     const url = props.location.pathname
-    // setInterval(() => {
-    //     console.log(loggedInUser);
-    // }, 2000)
     return (
         <div className="main-header">
             <div className="flex align-center justify-center">
