@@ -1,11 +1,12 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const cookieParser = require('cookie-parser')
+const cookieParser = require('cookie-parser');
 const cors = require('cors');
 const path = require('path');
 const app = express();
 const http = require('http').createServer(app);
 const session = require('express-session');
+
 //Express App config
 app.use(bodyParser.json());
 app.use(session({
