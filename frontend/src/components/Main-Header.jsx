@@ -3,19 +3,25 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 export const MainHeader = (props) => {
-    const loggedInUser = useSelector(state => state.userReducer.loggedInUser)
-    const url = props.location.pathname
+    const loggedInUser = useSelector(state => state.userReducer.loggedInUser);
+    const url = props.location.pathname;
     return (
-        <div className="main-header">
+        <div className={url.includes('admin') ? "admin-header" : "main-header"}>
             <div className="flex align-center justify-center">
-                <div>logo</div>
-                <h1>MyBlog</h1>
+                <img src="" alt="" />
+                <nav className="main-nav">
+                    {loggedInUser && <Link className={`${url.includes('admin') ? 'marked' : ''}`} to="/admin/blogs">Admin</Link>}
+                    <Link className={`${url.includes('blog') ? 'marked' : ''}`} to="/blog">Blogs</Link>
+                </nav>
             </div>
-            <nav className="main-nav">
-                <Link className={`${url.includes('admin') ? 'marked' : ''}`} to="/admin">Admin</Link>
-                <Link className={`${url.includes('blog') ? 'marked' : ''}`} to="/blog">Blog</Link>
-                <Link className={`${url.includes('login') ? 'marked' : ''}`} to="/login">Login</Link>
-            </nav>
+            <div>
+                {loggedInUser && < span> Hello {loggedInUser.fullName}</span>}
+                {!loggedInUser && <div>
+                    <Link to="/login"> Login </Link>
+                    <Link to="/signup"><strong>Get started</strong></Link>
+                    </div>}
+            </div>
+
         </div>
     )
 }

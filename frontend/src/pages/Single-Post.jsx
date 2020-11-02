@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { postService } from '../services/post.service';
+import { postService } from '../services/post/post.service';
 export const SinglePost = (props) => {
     const postId = props.match.params.id;
     const [post, setPost] = useState({});

@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import minimize from '../assets/minimize.png'
 import maximize from '../assets/maximize.png'
-export const SideNav = ({location}) => {
+export const SideNav = ({ location }) => {
     const [isOpen, setOpenStatus] = useState(true);
     const isMarked = (path) => {
-        const pathname = location.pathname 
+        const pathname = location.pathname
         return pathname.includes('admin') && pathname.includes(path) && isOpen
     }
     return (

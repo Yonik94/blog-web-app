@@ -2,35 +2,27 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setPosts, deletePost } from '../actions/post.action';
-import { getLoggedInUser } from '../actions/user.action';
-import { appContext } from '../appContext';
-import { PostTableList } from '../components/Post-Table-List';
-import { PostCardList } from '../components/Post-Card-List';
+import { setBlogs } from '../actions/blog.action';
+import { BlogList } from '../components/Blog-List';
 
 export const Blog = (props) => {
     const dispatch = useDispatch()
-    const postState = useSelector(state => state.postReducer);
-    const isAdmin = props.match.url.includes('admin');
+    const blogs = useSelector(state => state.blogReducer.blogs)
     useEffect(() => {
         (async () => {
-            if (!postState.posts) {
-                await dispatch(setPosts());
-                await dispatch(getLoggedInUser());
+            if (!blogs) {
+                dispatch(setBlogs());
             }
-        })()
-    }, [])
-    const onDeletePost = (id) => {
-        dispatch(deletePost(id))
-    }
+        })();
+    }, []);
 
     return (
         <div className="full-width">
-            <appContext.Provider value={{ onDeletePost }}>
-                {postState.posts && isAdmin && <PostTableList router={props} posts={postState.posts}></PostTableList>}
-                {postState.posts && !isAdmin && <PostCardList router={props} posts={postState.posts}></PostCardList>}
-                {!postState.posts && <div>Loading...</div>}
-            </appContext.Provider>
+            {blogs &&
+                <div>
+                    <BlogList blogs={blogs} />
+                </div>}
+            {!blogs && <h2>Loading</h2>}
         </div>
     );
 }

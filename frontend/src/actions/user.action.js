@@ -1,4 +1,5 @@
-import { userService } from '../services/users.service';
+import { userService } from '../services/user/users.service';
+import { authService } from '../services/auth/auth.service';
 
 export const setUsers = () => {
     return async (dispatch) => {
@@ -28,10 +29,11 @@ export const deleteUser = (id) => {
     }
 }
 
-export const login = (loginCred) => {
+export const loginSignup = (loginCred) => {
     return async (dispatch) => {
-        const user = await userService.login(loginCred);
-        return dispatch({type: 'SET_USER', user});
+        const res = await authService.loginSignup(loginCred);
+        console.log(res.user);
+        return dispatch({type: 'SET_USER', user: res.user});
     }
 }
 

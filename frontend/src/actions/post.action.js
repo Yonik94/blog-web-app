@@ -1,4 +1,4 @@
-import { postService } from '../services/post.service';
+import { postService } from '../services/post/post.service';
 
 export const setPosts = () => {
     return async (dispatch) => {

@@ -1,0 +1,57 @@
+type Query {
+    blogs: [Blog!]!
+    blog(id: ID, name: String): Blog
+    posts: [Post!]!
+    post(id: ID!): Post
+    users: [User!]!
+    user(username: String!): User
+}
+
+type Mutation {
+    addBlog(name: String!): Blog!
+    removeBlog(id: ID!): Blog!
+    updateBlog(id: ID!, name: String!): Blog!
+    addPost(title: String!, content: String!): Post!
+    removePost(id: ID!): Post!
+    updatePost(id: ID!, title: String!, content: String!): Post!
+    addUser(username: String!, password: String!, fullName: String!): User!
+    removeUser(id: ID!): User!
+    updateUser(id: ID!, username: String!, fullName: String!): User!
+    signup(username: String!, password: String!, fullName: String!): AuthPayload
+    login(username: String!, password: String!): AuthPayload
+}
+
+type Blog {
+    id: ID!
+    name: String!
+    admin_id: ID!
+    users: [User!]!
+    posts: [Post!]!
+}
+
+type Post {
+    id: ID!
+    title: String!
+    content: String!
+    user: User!
+    blog: Blog!
+}
+
+type AuthPayload {
+    token: String
+    user: User
+}
+
+type User {
+    id: ID!
+    fullName: String!
+    username: String!
+    blogs: [Blog!]!
+    posts: [Blog!]!
+}
+
+type Subscription {
+    newBlog: Blog
+    newPost: Post
+    newUser: User
+}

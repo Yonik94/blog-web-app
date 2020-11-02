@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { postService } from '../services/post.service';
+import { postService } from '../services/post/post.service';
 import { addPost, updatePosts } from '../actions/post.action';
 export const EditPost = (props) => {
     const dispach = useDispatch()

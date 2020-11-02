@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { userService } from '../services/users.service';
+import { userService } from '../services/user/users.service';
 import { addUser, updateUser } from '../actions/user.action';
 export const EditUser = (props) => {
     const dispach = useDispatch()

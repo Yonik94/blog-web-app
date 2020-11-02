@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { login } from '../actions/user.action'
+
+import { loginSignup } from '../actions/user.action'
 
 import eye from '../assets/eye.png'
 import witness from '../assets/witness.png'
+
 export const Login = (props) => {
     const [inputType, setInputType] = useState('password');
     const [formCred, setFormCred] = useState({ username: '', password: '' });
@@ -11,6 +13,7 @@ export const Login = (props) => {
     const loggedInUser = useSelector(state => state.userReducer.loggedInUser);
     let isOnSubmition = false;
     const dispatch = useDispatch()
+    const isLogin = props.location.pathname.includes('login') ? true : false
     const showPassword = (ev) => {
         ev.preventDefault()
         setInputType('text');
@@ -23,7 +26,7 @@ export const Login = (props) => {
 
     useEffect(() => {
         if(loggedInUser) {
-            props.history.push('/admin');
+            props.history.push('/admin/blogs');
         } else if(!loggedInUser && isOnSubmition) {
             console.log('Invalid Username or Password');
             isOnSubmition = false;
@@ -32,13 +35,23 @@ export const Login = (props) => {
     
     const submit = async (ev) => {
         ev.preventDefault();
-        await dispatch(login(formCred));
+        if(!isAllValid()) return
+        await dispatch(loginSignup(formCred));
         isOnSubmition = true;
+    }
+
+    const isAllValid = () => {
+        if(!formCred.username || !formCred.password) return false;
+        if(!isLogin && !formCred.fullName) return false;
+        return true;
     }
     return (
         <div className="login-page flex column align-center grow">
-            <h2>Login</h2>
+            <h2>{isLogin ? 'Login' : 'Signup'}</h2>
             <form onSubmit={(event) => submit(event)} action="">
+                {!isLogin && <input className="minimal-input" type="text" placeholder="Full name"
+                required
+                onChange={(event) => setFormCred({ ...formCred, fullName: event.target.value })}/>}
                 <input className="minimal-input" type="text" placeholder="Username"
                     required
                     onChange={(event) => setFormCred({ ...formCred, username: event.target.value })} />
@@ -49,7 +62,7 @@ export const Login = (props) => {
                         <img src={passwordImg} alt="show-password-img"/>
                     </button>
                 </div>
-                <button className="add-btn">Login</button>
+                <button className="add-btn">{isLogin ? 'Login' : 'Signup'}</button>
             </form>
         </div>
     );
